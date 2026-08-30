@@ -1,0 +1,84 @@
+{
+  "entities": {
+    "users": {
+      "title": "User",
+      "description": "User profile with role (admin or staff)",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 150 },
+        "role": { "type": "string", "enum": ["admin", "staff"] },
+        "status": { "type": "string", "enum": ["active", "inactive"] },
+        "created_at": { "type": "string" }
+      },
+      "required": ["name", "email", "role"]
+    },
+    "products": {
+      "title": "Product",
+      "description": "Stationery product catalog item",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string", "maxLength": 200 },
+        "category_id": { "type": "number" },
+        "category_name": { "type": "string", "maxLength": 100 },
+        "brand": { "type": "string", "maxLength": 100 },
+        "sku": { "type": "string", "maxLength": 50 },
+        "purchase_price": { "type": "number" },
+        "selling_price": { "type": "number" },
+        "quantity": { "type": "number" },
+        "unit": { "type": "string", "maxLength": 50 },
+        "created_at": { "type": "string" }
+      },
+      "required": ["name", "selling_price", "quantity"]
+    },
+    "categories": {
+      "title": "Category",
+      "description": "Stationery product category",
+      "type": "object",
+      "properties": {
+        "id": { "type": "number" },
+        "name": { "type": "string", "maxLength": 100 },
+        "description": { "type": "string", "maxLength": 300 }
+      },
+      "required": ["name"]
+    },
+    "sales": {
+      "title": "Sale",
+      "description": "Completed customer sale and invoice receipt",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "invoice_number": { "type": "string", "maxLength": 100 },
+        "customer_name": { "type": "string", "maxLength": 150 },
+        "user_id": { "type": "string" },
+        "user_name": { "type": "string", "maxLength": 100 },
+        "subtotal": { "type": "number" },
+        "discount": { "type": "number" },
+        "total_amount": { "type": "number" },
+        "payment_method": { "type": "string", "enum": ["Cash", "UPI", "Card", "Other"] },
+        "created_at": { "type": "string" }
+      },
+      "required": ["invoice_number", "total_amount", "payment_method"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "users",
+      "description": "User profiles for Admin and Staff"
+    },
+    "/products/{productId}": {
+      "schema": "products",
+      "description": "Stationery catalog items and stock levels"
+    },
+    "/categories/{categoryId}": {
+      "schema": "categories",
+      "description": "Product categories"
+    },
+    "/sales/{saleId}": {
+      "schema": "sales",
+      "description": "Sales records and billing transactions"
+    }
+  }
+}

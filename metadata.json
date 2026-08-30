@@ -1,0 +1,6 @@
+{
+  "name": "Stationery Store Management System",
+  "description": "A comprehensive web-based management system for stationery stores featuring inventory tracking, point of sale (POS) billing, supplier and purchase management, customer tracking, analytics reports, and role-based access control.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
